@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Work | goHere 2.0</title>
+    <link rel="stylesheet" href="css/main.min.css">
+
+</head>
+
+<body>
+    <div w3-include-html="./build/header.html"></div>
+    <div w3-include-html="./build/loader.html" id="loader"></div>
+    <section class="Hero work">
+        <div class="cont">
+
+            <div class="HomeHero-Col">
+
+            </div>
+        </div>
+        <canvas id="canvasSpace"></canvas>
+        <div class="divider-bottom blue"></div>
+    </section>
+    <section class="sec blue2pink gg">
+        <div data-aos="fade-up" data-aos-offset="-400" class="cc">
+            <div class="mini">
+                <div class="icon ico-black"></div>
+                <h6>Masterminds</h6>
+            </div>
+            <h2>Sharpening the <br>cutting edge</h2>
+            <p>At goHere we develop and apply technology in creative ways, adding value to your organization. Technology
+                enables transformational opportunities for your business.</p>
+            <a href="#">Learn More</a>
+        </div>
+    </section>
+    <section class="gg">
+        <div class="divider-top pink"></div>
+        <canvas class="sec black" id="canvasHex"></canvas>
+        <div data-aos="fade-up" data-aos-offset="-300" class="cc">
+            <div class="mini">
+                <div class="icon"></div>
+                <h6>street-smart strategists</h6>
+            </div>
+            <h2>Creative Solutions <br>are our business.</h2>
+            <p>At goHere we develop and apply technology in creative ways, adding value to your organization. Technology
+                enables transformational opportunities for your business.</p>
+
+        </div>
+        <div class="divider-bottom pink"></div>
+    </section>
+</body>
+<script src="https://www.w3schools.com/lib/w3.js"></script>;
+<script src="js/includeHTML.js"></script>;
+<script>
+    window.onload = function () {
+        fadeOutEffect();
+    };
+
+    function fadeOutEffect() {
+        var fadeTarget = document.getElementById("loader");
+        var fadeEffect = setInterval(function () {
+            if (!fadeTarget.style.opacity) {
+                fadeTarget.style.opacity = 1;
+            }
+            if (fadeTarget.style.opacity > 0) {
+                fadeTarget.style.opacity -= 0.2;
+            } else {
+                clearInterval(fadeEffect);
+                fadeTarget.style.display = 'none';
+            }
+        }, 100);
+    }
+</script>
+
+</html>

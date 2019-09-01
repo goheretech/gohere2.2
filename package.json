@@ -18,8 +18,8 @@
   },
   "homepage": "https://github.com/goheretech/gohere2.2#readme",
   "dependencies": {
-    "express": "^4.17.1"
-    
+    "express": "^4.17.1",
+    "three": "^0.108.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"

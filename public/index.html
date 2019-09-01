@@ -1,14 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/style.min.css">
-    <title>Homepage</title>
+    <title>goHere 2.0</title>
+    <link rel="stylesheet" type="text/css" href="css/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src='https://www.w3schools.com/lib/w3.js'></script>
 </head>
+
 <body>
-    <h1>Homepage</h1>
-    <a href="about.html">About</a>
+    <div w3-include-html="./build/loader.html" id="loader"></div>
+    <div w3-include-html="./build/header.html"></div>
+    <section class="Hero home">
+        <div class="cont">
+
+            <div class="HomeHero-Col">
+                <h1 class="creative"><span class="colorChange">Creative</span><br>
+                    <span="lh">Solutions</span>
+                </h1>
+            </div>
+        </div>
+        <canvas id="canvasSpace"></canvas>
+        <div class="divider-bottom purple"></div>
+    </section>
+    <section class="sec purp2pink gg">
+        <div data-aos="fade-up" data-aos-offset="-400" class="cc">
+            <div class="mini">
+                <div class="icon ico-black"></div>
+                <h6>Masterminds</h6>
+            </div>
+            <h2>Sharpening the <br>cutting edge</h2>
+            <p>At goHere we develop and apply technology in creative ways, adding value to your organization. Technology
+                enables transformational opportunities for your business.</p>
+            <a href="what.html">Learn More</a>
+        </div>
+    </section>
+    <section class="gg">
+        <canvas class="sec black" id="canvasHex"></canvas>
+        <div data-aos="fade-up" data-aos-offset="-300" class="cc">
+            <div class="mini">
+                <div class="icon"></div>
+                <h6>street-smart strategists</h6>
+            </div>
+            <h2>Creative Solutions <br>are our business.</h2>
+            <p>At goHere we develop and apply technology in creative ways, adding value to your organization. Technology
+                enables transformational opportunities for your business.</p>
+
+        </div>
+        <div class="divider-top pink"></div>
+        <div class="divider-bottom pink"></div>
+    </section>
+    <section class="sec pink2purp gg">
+        <div data-aos="fade-up" data-aos-offset="-300" class="cc">
+            <div class="mini">
+                <div class="icon ico-black"></div>
+                <h6>INCITING INSPIRATION</h6>
+            </div>
+            <h2>Fall back in <b>Love</b> <br>with your brand.</h2>
+            <p>goHere provided you with the right tools to display your brand and products to achieve strategic
+                outcomes.</p>
+            <a href="work.html">View Our Work</a>
+        </div>
+    </section>
+    <section class="gg">
+        <canvas class="sec black" id="canvasHexPurple"></canvas>
+        <div data-aos="fade-up" data-aos-offset="-300" class="cc">
+            <div class="mini">
+                <div class="icon ico-purple"></div>
+                <h6>INCITING INSPIRATION</h6>
+            </div>
+            <h2>Advanced Design <br>Attracts Business.</h2>
+            <p>goHere provided you with the right tools to display your brand and products to achieve strategic
+                outcomes.</p>
+            <a href="contact.html">Get Started</a>
+        </div>
+        <div class="divider-top purple"></div>
+        <div class="divider-bottom purple"></div>
+    </section>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
+
+<script src="js/includeHTML.js"></script>
+
+
+<script type="module" src="js/planet.js"></script>
+<script type="module" src="js/hex.js"></script>
+<script type="module" src="js/hex-purp.js"></script>
+<script>
+    window.onload = function () {
+        fadeOutEffect();
+    };
+
+    function fadeOutEffect() {
+        var fadeTarget = document.getElementById("loader");
+        var fadeEffect = setInterval(function () {
+            if (!fadeTarget.style.opacity) {
+                fadeTarget.style.opacity = 1;
+            }
+            if (fadeTarget.style.opacity > 0) {
+                fadeTarget.style.opacity -= 0.2;
+            } else {
+                clearInterval(fadeEffect);
+                fadeTarget.style.display = 'none';
+            }
+        }, 100);
+    }
+</script>
+
+
 </html>
