@@ -1,4 +1,4 @@
-
+import * as THREE from 'https://threejs.org/build/three.module.js';
 
 var scene, camera, composer, renderer, canvas;
 var sunMat, planetMat, atmoMat, atmo, atmo2, atmo3, sunLight;
@@ -120,7 +120,7 @@ function spaceMaker() {
 
   //Background-Flat
   var backLoader = new THREE.TextureLoader();
-  backLoader.load('textures/Planets/space.jpg', function(map) {
+  backLoader.load('img/Planets/space.jpg', function(map) {
     var bckGeo = new THREE.PlaneGeometry(1300, 900, 100);
     var bckMat = new THREE.MeshBasicMaterial({
       map: map
@@ -163,7 +163,7 @@ function spaceMaker() {
 function generatePlanets() {
   ///////Planet 1//////////////////////////
   var planet1Loader = new THREE.TextureLoader();
-  planet1Loader.load('textures/Planets/Gaseous2.png', function(map) {
+  planet1Loader.load('img/Planets/Gaseous2.png', function(map) {
     planGeo = new THREE.SphereGeometry(8, 60, 60);
     planetMat = new THREE.MeshStandardMaterial({
       map: map,
@@ -174,7 +174,7 @@ function generatePlanets() {
     planet = new THREE.Mesh(planGeo, planetMat);
 
     var atmo1Loader = new THREE.TextureLoader();
-    atmo1Loader.load('textures/Planets/Gaseous4.png', function(map) {
+    atmo1Loader.load('img/Planets/Gaseous4.png', function(map) {
       atmoGeo = new THREE.SphereGeometry(8.1, 60, 60);
       atmoMat = new THREE.MeshStandardMaterial({
         opacity: 0.75,
@@ -191,7 +191,7 @@ function generatePlanets() {
       ///Planet 2
 
       var planet2Loader = new THREE.TextureLoader();
-      planet2Loader.load('textures/Planets/Gaseous1.png', function(map) {
+      planet2Loader.load('img/Planets/Gaseous1.png', function(map) {
         var planGeo2 = new THREE.SphereGeometry(1, 60, 60);
         var planetMat2 = new THREE.MeshStandardMaterial({
           map: map,
@@ -207,7 +207,7 @@ function generatePlanets() {
       ///Planet 3
 
       var planet3Loader = new THREE.TextureLoader();
-      planet3Loader.load('textures/Planets/Terrestrial1.png', function(map) {
+      planet3Loader.load('img/Planets/Terrestrial1.png', function(map) {
         var planGeo3 = new THREE.SphereGeometry(0.07, 60, 60);
         var planetMat3 = new THREE.MeshStandardMaterial({
           map: map,
@@ -245,7 +245,7 @@ function calcRatio() {
 function makeBackground() {
   //////////Background
   var spaceTextures = new THREE.TextureLoader();
-  var textureEquirec = spaceTextures.load('textures/Planets/space.jpg');
+  var textureEquirec = spaceTextures.load('img/Planets/space.jpg');
   textureEquirec.mapping = THREE.EquirectangularReflectionMapping;
   var equirectShader = THREE.ShaderLib['equirect'];
   var equirectMaterial = new THREE.ShaderMaterial({
