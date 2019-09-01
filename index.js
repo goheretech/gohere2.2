@@ -1,14 +1,13 @@
 const express = require('express');
 const path = require('path');
 const THREE = require('three');
+
 const app = express();
 
 //Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/', 'index.html'));
-});
+app.use('/api/projects', require('./routes/api/projects'))
 
 const PORT = process.env.PORT || 5000;
 
