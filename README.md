@@ -2,6 +2,10 @@
 [Deployment](https://gohere-test.herokuapp.com/)
 
 ## Changelog
+#### v0.2.1
+* Added favicon
+* Integrated Firebase 
+
 #### v0.2.0
 * THREE.js Working 
 * Ready for content
