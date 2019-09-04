@@ -45,19 +45,26 @@ function init() {
     requestAnimationFrame(render);
 
     window.addEventListener('scroll', (e) =>{
-        var scrolled = window.pageYOffset;
+
+        //Get percent scrolled
+        var h = document.documentElement,
+            b = document.body,
+            st = 'scrollTop',
+            sh = 'scrollHeight';
+        var scrolled = ((h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight)) * 100; //0 to 100
+        var scrolledInv = 100-scrolled; //100 to 0
+
         var v1 = document.querySelector(".left");
         var v2 = document.querySelector(".right");
         //console.log(windowHalfY, window.innerHeight, scrolled);
         
-        var scrolledD = window.innerHeight - scrolled;
         // console.log(scrolled, scrolledD);
         
         // Fade Sections
 
-        if (scrolled > 100){
+        if (scrolled > 10){
                 v2.style.opacity = 0.0;
-            if (scrolledD < 50) {
+            if (scrolled > 90) {
                 v2.style.opacity = 1.0;
             }else{
                 v1.style.opacity = 0.0;
@@ -67,16 +74,15 @@ function init() {
         }
 
         // Scroll Camera
-        camera.position.z = scrolledD * 32 ;
-        console.log(camera.position.x);
-        camera.position.x = scrolledD * 10.6;
-        camera.position.y = scrolledD * -3.33333;
+        camera.position.z = scrolledInv * 32 * 7 ;
+        camera.position.x = scrolledInv * 10.6 * 7;
+        camera.position.y = scrolledInv * -3.33333 * 7;
         if (
-            camera.position.z <= 0
+            camera.position.z <= 1
         ) {
             camera.position.set(0, 0, 0);
         }
-        sun.position.x = scrolledD * -94.67 + 60000;
+        sun.position.x = scrolledInv * -94.67 * 7 + 60000;
         
         
         
