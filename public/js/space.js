@@ -174,7 +174,6 @@ function setupSpace() {
 function createAsteroid(params) {
     var astDMap,astNMap, astTex;
     
-    var gemMap = textureLoader.load('img/normals/gem-normal.jpg');
 
     var asterMat = [
         new THREE.MeshPhysicalMaterial({
