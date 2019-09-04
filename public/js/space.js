@@ -51,7 +51,7 @@ function init() {
         //console.log(windowHalfY, window.innerHeight, scrolled);
         
         var scrolledD = window.innerHeight - scrolled;
-        console.log(scrolled, scrolledD);
+        // console.log(scrolled, scrolledD);
         
         // Fade Sections
 
@@ -67,7 +67,8 @@ function init() {
         }
 
         // Scroll Camera
-        camera.position.z = scrolledD * 26 ;
+        camera.position.z = scrolledD * 32 ;
+        console.log(camera.position.x);
         camera.position.x = scrolledD * 10.6;
         camera.position.y = scrolledD * -3.33333;
         if (
@@ -75,7 +76,9 @@ function init() {
         ) {
             camera.position.set(0, 0, 0);
         }
-        sun.position.x = scrolledD * -74.67 + 33000;
+        sun.position.x = scrolledD * -94.67 + 60000;
+        
+        
         
     })
 }
@@ -183,7 +186,7 @@ function setupSpace() {
     earth.position.set(800, 0, -8000);
 
     moon.position.set(10000, -3000, 15000);
-    camera.position.set(8000, -2500, 20000);
+    camera.position.set(9000, -2500, 20000);
     
     scene.add(earth);
     //scene.add(planet);
