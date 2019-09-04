@@ -11,60 +11,75 @@
         body {
             margin: 0;
             padding: 0;
+            height: 1600px;
         }
-        h1{
-            font-size: 60px; 
-            margin:0;      
-            margin-bottom:10px;     
+
+        h1 {
+            font-size: 60px;
+            margin: 0;
+            margin-bottom: 10px;
         }
-        h3{
-            font-size: 30px;       
-            margin:0;
-            margin-bottom:10px;
+
+        h3 {
+            font-size: 30px;
+            margin: 0;
+            margin-bottom: 10px;
         }
-        p{
+
+        p {
             font-size: 18px;
         }
+
         #back {
-            max-height: 1500px;
-            display:flex;
-            flex-direction: column;
-            position:relative;
-            justify-content:space-between;
+
+
+            position: fixed;
             z-index: 10;
             /* background:green; */
-            width:100vw;
-            
+            width: 100vw;
+            height: 100vh;
+
         }
-        section{
-            display:flex;
-            min-height:750px;
-            color:white;
-            height:100vh;
+
+        section {
+            position: absolute;
+            display: flex;
+            min-height: 750px;
+            color: white;
+            height: 100vh;
             /* background:red; */
             /* max-height:750px;
             min-height:750px; */
-            padding:120px;
-            align-items:center;
+
+            align-items: center;
         }
-        .left{
+
+
+        .left {
             justify-content: flex-start;
+            align-items: flex-end;
+            opacity: 1;
         }
-        .right{
+
+        .right {
             justify-content: flex-end;
+            align-items: flex-start;
+            opacity: 0;
         }
 
-        .cont{
+        .cont {
+            padding: 120px;
             justify-content: flex-start;
-            width:50%;
+            width: 50%;
         }
 
-        .left.cont{
-            
+        .left.cont {
+
             justify-content: flex-start;
         }
-        .right.cont{
-            
+
+        .right.cont {
+
             justify-content: flex-end;
         }
 
@@ -72,21 +87,32 @@
             position: fixed;
             top: 0;
         }
+
+        @media screen and (max-width: 550px){
+            h1{
+                font-size:50px;
+            }
+            h3{
+                font-size:28px;
+            }
+            p{
+                font-size:16px
+            }
+            .cont{
+                padding:20px;
+                width:90%;
+            }
+            .right{
+                align-items: flex-end;
+            }
+        }
     </style>
 </head>
 
 <body>
     <canvas id='canvasSpace'></canvas>
     <container id="back">
-        <section data-aos="fade-in" data-aos-offset="600" class="left">
-            <div class="cont">
-                <h1>Big Titles Are Amazing</h1>
-                <h3>Haven't you heard?</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, ipsum nobis laboriosam libero maiores soluta sint? Id alias fugiat totam reprehenderit odit eum consectetur repellat maiores eveniet, voluptatum necessitatibus asperiores? Quae saepe autem quia recusandae quisquam est hic labore dolore molestiae mollitia obcaecati doloribus officia quas reiciendis iure ullam dolorum quo laborum aperiam delectus neque, fuga tempora nulla? Sunt, magni!.</p>
-            </div>
-            
-        </section>
-        <section data-aos="fade-in" data-aos-offset="600" class="right">
+        <section class="left">
             <div class="cont">
                 <h1>Big Titles Are Amazing</h1>
                 <h3>Haven't you heard?</h3>
@@ -96,7 +122,19 @@
                     labore dolore molestiae mollitia obcaecati doloribus officia quas reiciendis iure ullam dolorum quo
                     laborum aperiam delectus neque, fuga tempora nulla? Sunt, magni!.</p>
             </div>
-            
+
+        </section>
+        <section class="right">
+            <div class="cont">
+                <h1>Big Titles Are Amazing</h1>
+                <h3>Haven't you heard?</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, ipsum nobis laboriosam libero
+                    maiores soluta sint? Id alias fugiat totam reprehenderit odit eum consectetur repellat maiores
+                    eveniet, voluptatum necessitatibus asperiores? Quae saepe autem quia recusandae quisquam est hic
+                    labore dolore molestiae mollitia obcaecati doloribus officia quas reiciendis iure ullam dolorum quo
+                    laborum aperiam delectus neque, fuga tempora nulla? Sunt, magni!.</p>
+            </div>
+
         </section>
     </container>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>

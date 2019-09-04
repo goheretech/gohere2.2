@@ -45,7 +45,25 @@ function init() {
 
     window.addEventListener('scroll', (e) =>{
         var scrolled = window.pageYOffset;
-        scrolled = 740 - scrolled;
+        var v1 = document.querySelector(".left");
+        var v2 = document.querySelector(".right");
+        scrolled = 830 - scrolled;
+        console.log(scrolled);
+        
+        // Fade Sections
+
+        if (scrolled < 700){
+                v2.style.opacity = 0.0;
+            if (scrolled < 50) {
+                v2.style.opacity = 1.0;
+            }else{
+                v1.style.opacity = 0.0;
+            }
+        }else{
+            v1.style.opacity = 1.0;
+        }
+
+        // Scroll Camera
         camera.position.z = scrolled * 26 ;
         camera.position.x = scrolled * 10.6;
         camera.position.y = scrolled * -3.33333;
