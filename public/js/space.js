@@ -45,11 +45,15 @@ function init() {
 
     window.addEventListener('scroll', (e) =>{
         var scrolled = window.pageYOffset;
-        scrolled = 750 - scrolled;
+        scrolled = 740 - scrolled;
         camera.position.z = scrolled * 26 ;
         camera.position.x = scrolled * 10.6;
         camera.position.y = scrolled * -3.33333;
-        
+        if (
+            camera.position.z <= 0
+        ) {
+            camera.position.set(0, 0, 0);
+        }
         sun.position.x = scrolled * -74.67 + 33000;
         
     })
@@ -210,7 +214,7 @@ function createAsteroid(params) {
         })
     ];
     var loader = new FBXLoader();
-    loader.load('/models/Small_0010.fbx', function(object) {
+    loader.load('models/Small_0010.fbx', function(object) {
         // console.log(object);
         var i = 1;
         object.traverse(function(child) {
@@ -227,7 +231,7 @@ function createAsteroid(params) {
             }
         });
 
-        empty.position.set(15,-10,15);
+        empty.position.set(-15,0,-50);
 
         empty.add(object);
         scene.add(empty);

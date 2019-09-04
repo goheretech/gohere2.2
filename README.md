@@ -2,6 +2,8 @@
 [Deployment](https://gohere-test.herokuapp.com/)
 
 ## Changelog
+#### v0.2.3
+* Asteroid Fix
 #### v0.2.2
 * Created planet to asteroid transition.
 [View Testing Grounds](https://gohere-test.herokuapp.com/testgrounds.html)

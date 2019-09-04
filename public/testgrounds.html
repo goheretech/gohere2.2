@@ -12,12 +12,25 @@
             margin: 0;
             padding: 0;
         }
-
+        h1{
+            font-size: 60px; 
+            margin:0;      
+            margin-bottom:10px;     
+        }
+        h3{
+            font-size: 30px;       
+            margin:0;
+            margin-bottom:10px;
+        }
+        p{
+            font-size: 18px;
+        }
         #back {
-            height: 1500px;
+            max-height: 1500px;
             display:flex;
             flex-direction: column;
             position:relative;
+            justify-content:space-between;
             z-index: 10;
             /* background:green; */
             width:100vw;
@@ -26,9 +39,11 @@
         section{
             display:flex;
             color:white;
+            height:100vh;
             /* background:red; */
-            height:1500px;
-            padding:200px;
+            /* max-height:750px;
+            min-height:750px; */
+            padding:120px;
             align-items:center;
         }
         .left{
@@ -62,7 +77,7 @@
 <body>
     <canvas id='canvasSpace'></canvas>
     <container id="back">
-        <section data-aos="fade-in" data-aos-offset="700" class="left">
+        <section data-aos="fade-in" data-aos-offset="600" class="left">
             <div class="cont">
                 <h1>Big Titles Are Amazing</h1>
                 <h3>Haven't you heard?</h3>
@@ -70,7 +85,7 @@
             </div>
             
         </section>
-        <section data-aos="fade-in" data-aos-offset="700" class="right">
+        <section data-aos="fade-in" data-aos-offset="600" class="right">
             <div class="cont">
                 <h1>Big Titles Are Amazing</h1>
                 <h3>Haven't you heard?</h3>
