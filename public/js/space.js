@@ -12,6 +12,7 @@ var pivotMat, pivotGeo, empty;
 var clock = new THREE.Clock();
 var phase = 0;
 var delta;
+var windowHalfY = (window.innerHeight / 2);
 
 init();
 
@@ -47,14 +48,16 @@ function init() {
         var scrolled = window.pageYOffset;
         var v1 = document.querySelector(".left");
         var v2 = document.querySelector(".right");
-        scrolled = 830 - scrolled;
-        console.log(scrolled);
+        //console.log(windowHalfY, window.innerHeight, scrolled);
+        
+        var scrolledD = window.innerHeight - scrolled;
+        console.log(scrolled, scrolledD);
         
         // Fade Sections
 
-        if (scrolled < 700){
+        if (scrolled > 100){
                 v2.style.opacity = 0.0;
-            if (scrolled < 50) {
+            if (scrolledD < 50) {
                 v2.style.opacity = 1.0;
             }else{
                 v1.style.opacity = 0.0;
@@ -64,15 +67,15 @@ function init() {
         }
 
         // Scroll Camera
-        camera.position.z = scrolled * 26 ;
-        camera.position.x = scrolled * 10.6;
-        camera.position.y = scrolled * -3.33333;
+        camera.position.z = scrolledD * 26 ;
+        camera.position.x = scrolledD * 10.6;
+        camera.position.y = scrolledD * -3.33333;
         if (
             camera.position.z <= 0
         ) {
             camera.position.set(0, 0, 0);
         }
-        sun.position.x = scrolled * -74.67 + 33000;
+        sun.position.x = scrolledD * -74.67 + 33000;
         
     })
 }
@@ -103,7 +106,7 @@ function generateSpace() {
     });
     var amb = new THREE.AmbientLight(0x656d8a, 0.3);
     sunGeo = new THREE.IcosahedronGeometry(0.2, 6);
-    sun = new THREE.PointLight(0xeee4f5, 1.0, 1500000, 8);
+    sun = new THREE.PointLight(0xeee4f5, 1.0, 1500000, 1);
     scene.add(amb);
     sun.add(new THREE.Mesh(sunGeo, sunMat));
 
