@@ -2,6 +2,9 @@
 [Deployment](https://gohere-test.herokuapp.com/)
 
 ## Changelog
+#### v0.2.2
+* Created planet to asteroid transition.
+[View Testing Grounds](https://gohere-test.herokuapp.com/testgrounds.html)
 #### v0.2.1
 * Added favicon
 #### v0.2.0

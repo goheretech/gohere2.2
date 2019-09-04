@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Testing Grounds</title>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #back {
+            height: 1500px;
+            display:flex;
+            flex-direction: column;
+            position:relative;
+            z-index: 10;
+            /* background:green; */
+            width:100vw;
+            
+        }
+        section{
+            display:flex;
+            color:white;
+            /* background:red; */
+            height:1500px;
+            padding:200px;
+            align-items:center;
+        }
+        .left{
+            justify-content: flex-start;
+        }
+        .right{
+            justify-content: flex-end;
+        }
+
+        .cont{
+            justify-content: flex-start;
+            width:50%;
+        }
+
+        .left.cont{
+            
+            justify-content: flex-start;
+        }
+        .right.cont{
+            
+            justify-content: flex-end;
+        }
+
+        #canvasSpace {
+            position: fixed;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id='canvasSpace'></canvas>
+    <container id="back">
+        <section data-aos="fade-in" data-aos-offset="700" class="left">
+            <div class="cont">
+                <h1>Big Titles Are Amazing</h1>
+                <h3>Haven't you heard?</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, ipsum nobis laboriosam libero maiores soluta sint? Id alias fugiat totam reprehenderit odit eum consectetur repellat maiores eveniet, voluptatum necessitatibus asperiores? Quae saepe autem quia recusandae quisquam est hic labore dolore molestiae mollitia obcaecati doloribus officia quas reiciendis iure ullam dolorum quo laborum aperiam delectus neque, fuga tempora nulla? Sunt, magni!.</p>
+            </div>
+            
+        </section>
+        <section data-aos="fade-in" data-aos-offset="700" class="right">
+            <div class="cont">
+                <h1>Big Titles Are Amazing</h1>
+                <h3>Haven't you heard?</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, ipsum nobis laboriosam libero
+                    maiores soluta sint? Id alias fugiat totam reprehenderit odit eum consectetur repellat maiores
+                    eveniet, voluptatum necessitatibus asperiores? Quae saepe autem quia recusandae quisquam est hic
+                    labore dolore molestiae mollitia obcaecati doloribus officia quas reiciendis iure ullam dolorum quo
+                    laborum aperiam delectus neque, fuga tempora nulla? Sunt, magni!.</p>
+            </div>
+            
+        </section>
+    </container>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+<script type="module" src="js/space.js"></script>
+
+</html>

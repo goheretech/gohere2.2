@@ -222,7 +222,8 @@ function generatePlanets() {
       planetHolder1.rotation.y = (-45 * Math.PI) / 180;
       planetHolder2.rotation.y = (25 * Math.PI) / 180;
       planetHolder.rotation.y = (-30 * Math.PI) / 180;
-
+      console.log(scene);
+      
       calcRatio();
     });
   });
