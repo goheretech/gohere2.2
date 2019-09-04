@@ -173,22 +173,7 @@ function setupSpace() {
 
 function createAsteroid(params) {
     var astDMap,astNMap, astTex;
-    var textureLoader = new THREE.TextureLoader();
-    textureLoader.load('img/planets/rock.jpg',(map)=>{
-        map.wrapS = map.wrapT = THREE.RepeatWrapping;
-        map.repeat.set(20, 20);
-        astTex = map; 
-    });
-    textureLoader.load('img/planets/rockDisp.jpg', (map) => {
-        map.wrapS = map.wrapT = THREE.RepeatWrapping;
-        map.repeat.set(20, 20);
-        astDMap = map;
-    });
-    textureLoader.load('img/planets/rockNormal.jpg',(map)=>{
-        map.wrapS = map.wrapT = THREE.RepeatWrapping;
-        map.repeat.set(20, 20);
-        astNMap = map; 
-    });
+    
     var gemMap = textureLoader.load('img/normals/gem-normal.jpg');
 
     var asterMat = [
