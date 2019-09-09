@@ -153,7 +153,7 @@ function generatePlanets() {
 }
 
 function setupSpace() {
-    sun.position.set(-33700, 0, 25000);
+    
 
     earthMat = new THREE.MeshStandardMaterial({
         map: earthTex,
