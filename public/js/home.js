@@ -16,6 +16,7 @@ var clock = new THREE.Clock();
 var phase = 0;
 var delta;
 var windowHalfY = window.innerHeight / 2;
+var lastScroll = 0;
 
 //Initial Values
 // var cameraStart = { x: 0, y: 0, z: 0 }; //og - end
@@ -24,7 +25,7 @@ var cameraStart = { x: 17920, y: -2333, z: 47600 }; //start
 
 // var asterPosition = { x: -10, y: 0, z: -50 }; //og - end
 // var asterPosition = { x: -10, y: 0, z: -30 }; //mid
-var asterPosition = { x: -10, y: 0, z: -50 }; //start
+var asterPosition = { x: -25, y: 0, z: -80 }; //start
 
 // var sunPosition = { x: -33700, y: 0, z: 25000 }; //og - end
 // var sunPosition = { x: 33700, y: 0, z: 25000 }; //mid
@@ -40,7 +41,7 @@ var moonPosition = { x: 19000, y: -1700, z: 15000 }; //start
 
 // var earthPosition = { x: 900, y: 0, z: -6000 }; //og - end
 // var earthPosition = { x: 9000, y: 0, z: -6000 }; //mid
-var earthPosition = { x: 29000, y: 0, z: -6000 }; //start
+var earthPosition = { x: 29000, y: 0, z: -20000 }; //start
 
 init();
 
@@ -70,7 +71,7 @@ async function init() {
     camera.position.set(cameraStart.x, cameraStart.y, cameraStart.z);
 
     //Ambient Lighting
-    var amb = new THREE.AmbientLight(0xffffff, 0.2);
+    var amb = new THREE.AmbientLight(0xf2e1ed, 0.2);
     scene.add(amb);
 
     //Create sun
@@ -88,10 +89,11 @@ async function init() {
     scene.add(astHolder);
     console.log(scene);
 
-    renderer.setClearColor(0x050505, 1);
+    renderer.setClearColor(0x050505, 0);
     // renderer.setClearColor(0x8a8988, 1);
     renderer.render(scene, camera);
     requestAnimationFrame(render);
+    removeLoad();
     window.addEventListener('scroll', scrolling);
 }
 
@@ -103,7 +105,7 @@ function render() {
             break;
         case 1:
             insideAst.intensity = Math.abs(
-                Math.sin(clock.elapsedTime / 4) * 20
+                Math.sin(clock.elapsedTime) * 20
             );
             astHolder.rotation.y += 2 * Math.PI/180 * delta;
             earth.rotation.y += 1 * Math.PI/180 * delta;
@@ -127,19 +129,30 @@ function scrolling(e) {
         st = 'scrollTop',
         sh = 'scrollHeight';
     var scrolled =
-        ((h[st] || b[st]) /
-            ((h[sh] || b[sh]) - h.clientHeight)) *
-        100; //0 to 100
+        ((h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight)) * 100; //0 to 100
     var scrolledInv = 100 - scrolled; //100 to 0
 
-    console.log(camera.position);
-    
+    // Detect Scroll Up or Down
+    var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+    if (st > lastScroll) {
+        planet.rotation.y += (1 * Math.PI) / 180;
+        console.log(planet.rotation.y);
+        
+        moon.rotation.y += (1 * Math.PI) / 180;
+        earth.rotation.y += (1 * Math.PI) / 180;
+    } else {
+        planet.rotation.y -= (1 * Math.PI) / 180;
+        moon.rotation.y -= (1 * Math.PI) / 180;
+        earth.rotation.y -= (1 * Math.PI) / 180;
+    }
+    lastScroll = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+
     var x = scrolled;
-    // Scroll Camera    
-    camera.position.z = (22/25)*Math.pow(x,2)-(564/1)*x+(47600/1);
+    // Scroll Camera
+    camera.position.z = (22 / 25) * Math.pow(x, 2) - (564 / 1) * x + 47600 / 1;
 
     //Move Planet
-    planet.position.x = 320*x+12000
+    planet.position.x = 320 * x + 12000;
 
     //Move Moon
     moon.position.x = (7 / 5) * Math.pow(x, 2) - 230 * x + 19000;
@@ -148,18 +161,35 @@ function scrolling(e) {
     earth.position.x = (119 / 50) * Math.pow(x, 2) - 519 * x + 29000;
 
     //Move sun
-    sun.position.x = (-6740 / 10)  * x + 33700;
+    sun.position.x = (-6740 / 10) * x + 33700;
 
+    
 
     camera.position.x = scrolledInv * 25.6 * 7;
     camera.position.y = scrolledInv * -3.33333 * 7;
 }
 
 
+function removeLoad(){
+    var fadeTarget = document.getElementById("loader");
+        var fadeEffect = setInterval(function () {
+            if (!fadeTarget.style.opacity) {
+                fadeTarget.style.opacity = 1;
+            }
+            if (fadeTarget.style.opacity > 0) {
+                fadeTarget.style.opacity -= 0.2;
+            } else {
+                clearInterval(fadeEffect);
+                fadeTarget.style.display = 'none';
+            }
+        }, 100);
+}
+
+
 function genSun(){
     sunMat = new THREE.MeshStandardMaterial({
         emissiveIntensity: 1,
-        emissive: 0xf5ebdf // darkgrey
+        emissive: 0xf5e6f0 // darkgrey
     });
     sunGeo = new THREE.IcosahedronGeometry(0.2, 6);
     sun = new THREE.PointLight(0xeee4f5, 1.0, 1500000, 3);
@@ -192,11 +222,11 @@ function createPlanets(){
 function loadTextures() {
     return new Promise((resolve, reject) => {
         var textureLoader = new THREE.TextureLoader();
-        textureLoader.load('img/Planets/Gaseous4.png', function(map) {
+        textureLoader.load('img/Planets/Gaseous2.png', function(map) {
             moonTex = map;
         });
         var textureLoader = new THREE.TextureLoader();
-        textureLoader.load('img/Planets/Gaseous2.png', function(map) {
+        textureLoader.load('img/Planets/Gaseous4.png', function(map) {
             planetTex = map;
         });
         var textureLoader = new THREE.TextureLoader();
@@ -212,13 +242,15 @@ function loadTextures() {
                 reject('Didnt work');
             }
         });
+
+        
     });
 }
 
 function loadModel() {
     return new Promise((resolve, reject) => {
         var loader = new FBXLoader();
-        loader.load('models/Small_0010.fbx', function(object) {
+        loader.load('models/Medium_0015.fbx', function(object) {
             object.traverse(function(child) {
                 
                 if (child.isMesh) {

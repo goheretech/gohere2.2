@@ -6,10 +6,34 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="./css/scene.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.min.css">
+    <script src='https://www.w3schools.com/lib/w3.js'></script>
 </head>
 <body>
+    <div w3-include-html="./build/loader.html" id="loader"></div>
+    <div w3-include-html="./build/header.html"></div>
     <canvas id="canvas"></canvas>
-    <section
 </body>
+<script src="js/includeHTML.js"></script>
 <script type="module" src="./js/home.js"></script>
+<script>
+    window.onload = function () {
+        fadeOutEffect();
+    };
+
+    function fadeOutEffect() {
+        var fadeTarget = document.getElementById("loader");
+        var fadeEffect = setInterval(function () {
+            if (!fadeTarget.style.opacity) {
+                fadeTarget.style.opacity = 1;
+            }
+            if (fadeTarget.style.opacity > 0) {
+                fadeTarget.style.opacity -= 0.2;
+            } else {
+                clearInterval(fadeEffect);
+                fadeTarget.style.display = 'none';
+            }
+        }, 100);
+    }
+</script>
 </html>

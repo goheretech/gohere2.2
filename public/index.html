@@ -12,6 +12,10 @@
 </head>
 
 <body>
+    
+    <div class="bg">
+        <canvas id="canvas"></canvas>
+    </div>
     <div w3-include-html="./build/loader.html" id="loader"></div>
     <div w3-include-html="./build/header.html"></div>
     <section class="Hero home">
@@ -23,7 +27,7 @@
                 </h1>
             </div>
         </div>
-        <canvas id="canvasSpace"></canvas>
+        
         <div class="divider-bottom purple"></div>
     </section>
     <section class="sec purp2pink gg">
@@ -38,13 +42,10 @@
             <a href="what.html">Learn More</a>
         </div>
     </section>
-    <section class="gg">
-        <canvas class="sec black" id="canvasHex"></canvas>
-        <div data-aos="fade-up" data-aos-offset="-300" class="cc">
-            <div class="mini">
-                <div class="icon"></div>
-                <h6>street-smart strategists</h6>
-            </div>
+    <section class="gg ">
+        
+        <div data-aos="fade-up" data-aos-offset="-300" class="cc al-left">
+            
             <h2>Creative Solutions <br>are our business.</h2>
             <p>At goHere we develop and apply technology in creative ways, adding value to your organization. Technology
                 enables transformational opportunities for your business.</p>
@@ -66,7 +67,7 @@
         </div>
     </section>
     <section class="gg">
-        <canvas class="sec black" id="canvasHexPurple"></canvas>
+        
         <div data-aos="fade-up" data-aos-offset="-300" class="cc">
             <div class="mini">
                 <div class="icon ico-purple"></div>
@@ -89,10 +90,8 @@
 <script src="js/includeHTML.js"></script>
 
 
-<script type="module" src="js/planet.js"></script>
-<script type="module" src="js/hex.js"></script>
-<script type="module" src="js/hex-purp.js"></script>
-<script>
+<script type="module" src="./js/home.js"></script>
+<!-- <script>
     window.onload = function () {
         fadeOutEffect();
     };
@@ -111,7 +110,7 @@
             }
         }, 100);
     }
-</script>
+</script> -->
 
 
 </html>
