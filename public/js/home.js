@@ -274,13 +274,13 @@ function loadModel() {
 function createMaterials() {
     earthMat = new THREE.MeshStandardMaterial({
         map: earthTex,
-        metalness: 0.0,
+        metalness: 0.7,
         roughness: 0.5
     });
 
     moonMat = new THREE.MeshStandardMaterial({
         map: moonTex,
-        metalness: 0.0,
+        metalness: 0.7,
         roughness: 0.5
     });
 
@@ -294,7 +294,7 @@ function createMaterials() {
 
     planetMat = new THREE.MeshStandardMaterial({
         map: planetTex,
-        metalness: 0.0,
+        metalness: 0.7,
         roughness: 0.5
     });
 
