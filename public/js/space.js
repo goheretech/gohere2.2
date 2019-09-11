@@ -129,6 +129,8 @@ function generateSpace() {
     //setupSpace();
 }
 
+
+
 function generatePlanets() {
     //Create Textures
     var textureLoader = new THREE.TextureLoader();

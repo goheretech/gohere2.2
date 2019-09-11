@@ -14,6 +14,7 @@ var asteroid = [],
     asterMat;
 var clock = new THREE.Clock();
 var phase = 0;
+var cube, cube2;
 var delta;
 var windowHalfY = window.innerHeight / 2;
 var lastScroll = 0;
@@ -41,7 +42,8 @@ var moonPosition = { x: 19000, y: -1700, z: 15000 }; //start
 
 // var earthPosition = { x: 900, y: 0, z: -6000 }; //og - end
 // var earthPosition = { x: 9000, y: 0, z: -6000 }; //mid
-var earthPosition = { x: 29000, y: 0, z: -20000 }; //start
+// var earthPosition = { x: 29000, y: 0, z: -20000 }; //start
+var earthPosition = { x: -25, y: 0, z: -380 }; //start
 
 init();
 
@@ -49,7 +51,7 @@ async function init() {
     await loadTextures()
         .then(createMaterials)
         .catch(err => console.log(err));
-    await loadModel();
+    // await loadModel();
 
     canvas = document.getElementById('canvas');
     renderer = new THREE.WebGLRenderer({
@@ -64,7 +66,7 @@ async function init() {
     camera = new THREE.PerspectiveCamera(
         35,
         window.innerWidth / window.innerHeight,
-        0.1,
+        1000,
         300000
     );
 
@@ -77,6 +79,9 @@ async function init() {
     //Create sun
     genSun();
 
+    //Create Gradient
+    generateGradient();
+
     //Create Planets
     createPlanets();
 
@@ -87,7 +92,7 @@ async function init() {
     });
     astHolder.position.set(asterPosition.x, asterPosition.y, asterPosition.z);
     scene.add(astHolder);
-    console.log(scene);
+    // console.log(scene);
 
     renderer.setClearColor(0x050505, 0);
     // renderer.setClearColor(0x8a8988, 1);
@@ -136,8 +141,7 @@ function scrolling(e) {
     var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
     if (st > lastScroll) {
         planet.rotation.y += (1 * Math.PI) / 180;
-        console.log(planet.rotation.y);
-        
+        // console.log(planet.rotation.y);
         moon.rotation.y += (1 * Math.PI) / 180;
         earth.rotation.y += (1 * Math.PI) / 180;
     } else {
@@ -149,7 +153,6 @@ function scrolling(e) {
 
     var x = scrolled;
     // Scroll Camera
-    camera.position.z = (22 / 25) * Math.pow(x, 2) - (564 / 1) * x + 47600 / 1;
 
     //Move Planet
     planet.position.x = 320 * x + 12000;
@@ -158,15 +161,86 @@ function scrolling(e) {
     moon.position.x = (7 / 5) * Math.pow(x, 2) - 230 * x + 19000;
 
     //Move earth
-    earth.position.x = (119 / 50) * Math.pow(x, 2) - 519 * x + 29000;
+    // earth.position.x = (119 / 50) * Math.pow(x, 2) - 519 * x + 29000;
 
     //Move sun
-    sun.position.x = (-6740 / 10) * x + 33700;
-
-    
+    sun.position.x = (-6740 / 7) * x + 33700;
 
     camera.position.x = scrolledInv * 25.6 * 7;
     camera.position.y = scrolledInv * -3.33333 * 7;
+    camera.position.z = (22 / 25) * Math.pow(x, 2) - (564 / 1) * x + 47600 / 1;
+
+    cube.position.x = scrolledInv * 25.6 * 7;
+    cube.position.y = 487* scrolled -14800;
+    cube.position.z = ((22 / 25) * Math.pow(x, 2) - (564 / 1) * x + 47600 / 1 )-12025;
+    console.log(cube.position.y);
+    
+    // cube2.position.x = scrolledInv * 25.6 * 7;
+    // cube2.position.y = 487* x -10000;
+    // cube2.position.z = ((22 / 25) * Math.pow(x, 2) - (564 / 1) * x + 47600 / 1 )-11025;
+}
+
+function generateGradient() {
+
+    const geometry = new THREE.Geometry();
+    geometry.vertices.push(
+        new THREE.Vector3(0, 0, 0),
+        new THREE.Vector3(-11, 2, 0),
+        new THREE.Vector3(-18, -1, 0),
+        new THREE.Vector3(-18, -16, 0),
+        new THREE.Vector3(-11, -18, 0),
+        new THREE.Vector3(-1, -16, 0),
+        new THREE.Vector3(7, -18, 0),
+        new THREE.Vector3(17, -16, 0),
+        new THREE.Vector3(17, -1, 0),
+        new THREE.Vector3(8, 2, 0)
+    );
+
+    geometry.faces.push(
+        new THREE.Face3(0, 1, 2),
+        new THREE.Face3(2, 3, 4),
+        new THREE.Face3(4, 5, 2),
+        new THREE.Face3(5, 0, 2),
+        new THREE.Face3(6, 0, 5),
+        new THREE.Face3(6, 9, 0),
+        new THREE.Face3(6, 7, 9),
+        new THREE.Face3(8, 9, 7)
+    );
+
+    const material = new THREE.MeshStandardMaterial({
+        color: 0x906094, //purple
+        // color: 0x171717, //black
+        roughness: 0.2
+    });
+    const material2 = new THREE.MeshStandardMaterial({
+        color: 0x1f1f1f, //grey
+        // color: 0x906094, //purple
+        metalness: 0.6,
+        roughness: 0.9
+    });
+    geometry.scale(470, 420, 500);
+    geometry.computeFaceNormals();
+    geometry.center();
+    var geo2 = geometry.clone();
+    geo2.scale(1, 0.97, 0.98);
+    geo2.computeFaceNormals();
+    cube = new THREE.Mesh(geometry, material);
+    cube2 = new THREE.Mesh(geo2, material2);
+    cube.position.set(cameraStart.x, cameraStart.y, cameraStart.z - 150);
+    console.log(cube2);
+    
+    // cube2.position.z = -2;
+    scene.add(cube);
+    cube.add(cube2);
+
+    var sec2 = cube.clone();
+
+    sec2.position.set(0,0, -10);
+    cube.add(sec2);
+
+    console.log(sec2);
+    
+    
 }
 
 
@@ -274,13 +348,13 @@ function loadModel() {
 function createMaterials() {
     earthMat = new THREE.MeshStandardMaterial({
         map: earthTex,
-        metalness: 0.7,
+        metalness: 0.35,
         roughness: 0.5
     });
 
     moonMat = new THREE.MeshStandardMaterial({
         map: moonTex,
-        metalness: 0.7,
+        metalness: 0.35,
         roughness: 0.5
     });
 
@@ -294,7 +368,7 @@ function createMaterials() {
 
     planetMat = new THREE.MeshStandardMaterial({
         map: planetTex,
-        metalness: 0.7,
+        metalness: 0.35,
         roughness: 0.5
     });
 
