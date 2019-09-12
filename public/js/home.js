@@ -1,5 +1,5 @@
 import * as THREE from 'https://threejs.org/build/three.module.js';
-import { FBXLoader } from 'https://threejs.org/examples/jsm/loaders/FBXLoader.js';
+import { ReflectorRTT } from 'https://threejs.org/examples/jsm/objects/ReflectorRTT.js';
 
 var scene = new THREE.Scene();
 var camera, renderer, canvas;
@@ -9,15 +9,14 @@ var moonGeo, moonTex, moonMat, moon;
 var earthGeo, earthTex, earthMat, earth;
 var atmo1Geo, atmo1Tex, atmo1Mat, atmo1;
 var asteroid = [],
-    astHolder,
-    insideAst,
-    asterMat;
+astHolder;
 var clock = new THREE.Clock();
 var phase = 0;
-var cube, cube2;
 var delta;
 var windowHalfY = window.innerHeight / 2;
 var lastScroll = 0;
+var sections, secHolder;
+var reflMap, uniforms, matEdge;
 
 //Initial Values
 // var cameraStart = { x: 0, y: 0, z: 0 }; //og - end
@@ -43,7 +42,7 @@ var moonPosition = { x: 19000, y: -1700, z: 15000 }; //start
 // var earthPosition = { x: 900, y: 0, z: -6000 }; //og - end
 // var earthPosition = { x: 9000, y: 0, z: -6000 }; //mid
 // var earthPosition = { x: 29000, y: 0, z: -20000 }; //start
-var earthPosition = { x: -25, y: 0, z: -380 }; //start
+var earthPosition = { x: -25, y: 0, z: -2780 }; //start
 
 init();
 
@@ -104,14 +103,14 @@ async function init() {
 
 function render() {
     delta = clock.getDelta();
+    var time = clock.elapsedTime;
     switch (phase) {
         case 0:
             
             break;
         case 1:
-            insideAst.intensity = Math.abs(
-                Math.sin(clock.elapsedTime) * 20
-            );
+            uniforms.iResolution.value.set(canvas.width, canvas.height, 1);
+            uniforms.iTime.value = time;
             astHolder.rotation.y += 2 * Math.PI/180 * delta;
             earth.rotation.y += 1 * Math.PI/180 * delta;
             atmo1.rotation.y += 1 * Math.PI/180 * delta;
@@ -170,10 +169,10 @@ function scrolling(e) {
     camera.position.y = scrolledInv * -3.33333 * 7;
     camera.position.z = (22 / 25) * Math.pow(x, 2) - (564 / 1) * x + 47600 / 1;
 
-    cube.position.x = scrolledInv * 25.6 * 7;
-    cube.position.y = 487* scrolled -14800;
-    cube.position.z = ((22 / 25) * Math.pow(x, 2) - (564 / 1) * x + 47600 / 1 )-12025;
-    console.log(cube.position.y);
+    secHolder.position.x = scrolledInv * 25.6 * 7;
+    secHolder.position.y = 487* scrolled -14800;
+    secHolder.position.z = ((22 / 25) * Math.pow(x, 2) - (564 / 1) * x + 47600 / 1 )-12025;
+    console.log(secHolder.position.y);
     
     // cube2.position.x = scrolledInv * 25.6 * 7;
     // cube2.position.y = 487* x -10000;
@@ -182,8 +181,60 @@ function scrolling(e) {
 
 function generateGradient() {
 
-    const geometry = new THREE.Geometry();
-    geometry.vertices.push(
+    const fragmentShader = `
+    #include <common>
+
+    uniform vec3 iResolution;
+    uniform float iTime;
+
+    // By iq: https://www.shadertoy.com/user/iq  
+    // license: Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
+    void mainImage( out vec4 fragColor, in vec2 fragCoord )
+    {
+        // Normalized pixel coordinates (from 0 to 1)
+        vec2 uv = fragCoord/iResolution.xy;
+
+        // Time varying pixel color
+        vec3 col = 0.5 + 0.5*cos(iTime+uv.xyx+vec3(0,2,4));
+
+        // Output to screen
+        fragColor = vec4(col,1.0);
+    }
+
+    void main() {
+        mainImage(gl_FragColor, gl_FragCoord.xy);
+    }
+    `;
+    uniforms = {
+            iTime: { value: 0 },
+            iResolution: { value: new THREE.Vector3() }
+        };
+    matEdge = new THREE.ShaderMaterial({
+            
+            fragmentShader,
+            uniforms,
+        });
+    // matEdge.lights = true;
+    // const matEdge = new THREE.MeshStandardMaterial({
+    //     color: 0x906094, //purple
+    //     // color: 0x171717, //black
+    //     roughness: 0.2
+    // });
+    const matInside = new THREE.MeshStandardMaterial({
+        color: 0x121212, //grey
+        // color: 0x906094, //purple
+        metalness: 0.9,
+        roughness: 0.6,
+        // roughnessMap: reflMap
+    });
+    
+    var emptyGeo = new THREE.BoxGeometry(10, 10, 10);
+    secHolder = new THREE.Mesh(emptyGeo, matInside);
+    secHolder.position.set(cameraStart.x, cameraStart.y, cameraStart.z - 150);
+    scene.add(secHolder);
+
+    const secGeo = new THREE.Geometry();
+    secGeo.vertices.push(
         new THREE.Vector3(0, 0, 0),
         new THREE.Vector3(-11, 2, 0),
         new THREE.Vector3(-18, -1, 0),
@@ -196,7 +247,7 @@ function generateGradient() {
         new THREE.Vector3(8, 2, 0)
     );
 
-    geometry.faces.push(
+    secGeo.faces.push(
         new THREE.Face3(0, 1, 2),
         new THREE.Face3(2, 3, 4),
         new THREE.Face3(4, 5, 2),
@@ -207,38 +258,83 @@ function generateGradient() {
         new THREE.Face3(8, 9, 7)
     );
 
-    const material = new THREE.MeshStandardMaterial({
-        color: 0x906094, //purple
-        // color: 0x171717, //black
-        roughness: 0.2
-    });
-    const material2 = new THREE.MeshStandardMaterial({
-        color: 0x1f1f1f, //grey
-        // color: 0x906094, //purple
-        metalness: 0.6,
-        roughness: 0.9
-    });
-    geometry.scale(470, 420, 500);
-    geometry.computeFaceNormals();
-    geometry.center();
-    var geo2 = geometry.clone();
-    geo2.scale(1, 0.97, 0.98);
-    geo2.computeFaceNormals();
-    cube = new THREE.Mesh(geometry, material);
-    cube2 = new THREE.Mesh(geo2, material2);
-    cube.position.set(cameraStart.x, cameraStart.y, cameraStart.z - 150);
-    console.log(cube2);
+    secGeo.scale(470, 420, 500);
+    secGeo.computeFaceNormals();
+    secGeo.center();
+
+    var insideSecGeo = secGeo.clone();
+    insideSecGeo.scale(1, 0.97, 0.98);
+    insideSecGeo.computeFaceNormals();
+
+    function makeInstance(geometry, material, x, y, z, parent){
+        var section = new THREE.Mesh(geometry, material);
+        parent.add(section);
+        section.position.set(x,y,z);
+        console.log('created');
+        return section
+        
+    }
     
-    // cube2.position.z = -2;
-    scene.add(cube);
-    cube.add(cube2);
+    sections = [
+        makeInstance(
+            secGeo,
+            matEdge,
+            0,
+            0,
+            0,
+            secHolder
+            ),
+        makeInstance(
+            insideSecGeo,
+            matInside,
+            0,
+            0,
+            5,
+            secHolder
+            ),
+        makeInstance(
+            secGeo,
+            matEdge,
+            0,
+            -17150,
+            0,
+            secHolder
+            ),
+        makeInstance(
+            insideSecGeo,
+            matInside,
+            0,
+            -17150,
+            5,
+            secHolder
+            )
+    ];
+    console.log(sections);
+    
+    
+    // var geo2 = geometry.clone();
+    // geo2.scale(1, 0.97, 0.98);
+    // geo2.computeFaceNormals();
+    // cube = new THREE.Mesh(geometry, material);
+    // cube2 = new THREE.Mesh(geo2, material2);
+    // cube.position.set(cameraStart.x, cameraStart.y, cameraStart.z - 150);
+    // console.log(cube2);
+    
+    // // cube2.position.z = -2;
+    // scene.add(cube);
+    // cube.add(cube2);
 
-    var sec2 = cube.clone();
+    // var sec2 = geometry.clone();
+    // var sec22 = geo2.clone();
 
-    sec2.position.set(0,0, -10);
-    cube.add(sec2);
+    // cube3 = new THREE.Mesh(sec2, material);
+    // cube32 = new THREE.Mesh(sec22, material2);
 
-    console.log(sec2);
+    // cube3.position.set(0,2,0);
+    // cube.add(cube3);
+    // cube3.add(cube32);
+
+    // console.log(sec2);
     
     
 }
@@ -291,6 +387,7 @@ function createPlanets(){
     scene.add(moon);
     earth.add(atmo1);
     scene.add(sun);
+    phase = 1;
 }
 
 function loadTextures() {
@@ -308,9 +405,15 @@ function loadTextures() {
             atmo1Tex = map;
         });
         var textureLoader = new THREE.TextureLoader();
+        textureLoader.load('./img/noiseRefl_reflective-map1.png', function(
+            map
+        ) {
+            reflMap = map;
+        });
+        var textureLoader = new THREE.TextureLoader();
         textureLoader.load('img/Planets/Terrestrial3.png', function(map) {
             earthTex = map;
-            if (earthTex && moonTex && atmo1Tex && planetTex) {
+            if (earthTex && moonTex && atmo1Tex && planetTex && reflMap) {
                 resolve();
             } else {
                 reject('Didnt work');
@@ -321,40 +424,18 @@ function loadTextures() {
     });
 }
 
-function loadModel() {
-    return new Promise((resolve, reject) => {
-        var loader = new FBXLoader();
-        loader.load('models/Medium_0015.fbx', function(object) {
-            object.traverse(function(child) {
-                
-                if (child.isMesh) {
-                    asteroid.push(child);
-                }
-            });
-            insideAst = new THREE.PointLight(0x17bbd1, 1200.38, 300, 0.1);
-            asteroid.push(insideAst);
-            asteroid[0].material = asterMat[1];
-            asteroid[1].material = asterMat[0];
-            if (asteroid.length >= 3) {
-                phase = 1;
-                resolve();
-            } else {
-                reject('wtf?');
-            }
-        });
-    });
-}
+
 
 function createMaterials() {
     earthMat = new THREE.MeshStandardMaterial({
         map: earthTex,
-        metalness: 0.35,
+        metalness: 0.1,
         roughness: 0.5
     });
 
     moonMat = new THREE.MeshStandardMaterial({
         map: moonTex,
-        metalness: 0.35,
+        metalness: 0.1,
         roughness: 0.5
     });
 
@@ -368,7 +449,7 @@ function createMaterials() {
 
     planetMat = new THREE.MeshStandardMaterial({
         map: planetTex,
-        metalness: 0.35,
+        metalness: 0.1,
         roughness: 0.5
     });
 
