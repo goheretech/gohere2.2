@@ -18,6 +18,8 @@ var lastScroll = 0;
 var sections, secHolder;
 var reflMap, uniforms, matEdge;
 
+var topSec, midSec, bottomSec;
+
 const fragmentShader = `
     #include <common>
     #define TWO_PI 6.28318530718
@@ -48,7 +50,7 @@ const fragmentShader = `
         // and the Saturation to the radius
         color = hsb2rgb(vec3((angle/TWO_PI)+0.5+iTime/10.,radius,1.0));
 
-        gl_FragColor = vec4(color,sin(iTime)-1.);
+        gl_FragColor = vec4(color,sin(iTime));
     }
     `;
 const canvasDemo = document.querySelector('#canvDemo')
@@ -103,6 +105,10 @@ async function init() {
 
     
     canvas = document.getElementById('canvas');
+    topSec = document.getElementById('topSec');
+    midSec = document.getElementById('midSec');
+    bottomSec = document.getElementById('lastSec');
+
     renderer = new THREE.WebGLRenderer({
         canvas: canvas,
         antialias: true,
@@ -211,6 +217,28 @@ function scrolling(e) {
     canvasDemo.style.transform = `translate(0,${test}px)`
     canvasDemo2.style.transform = `translate(0,${test2}px)`
 
+    console.log(x);
+
+    
+    //Fade Sections
+    if (x > 3){
+        topSec.style.opacity = 0;
+    }else{
+        topSec.style.opacity = 1;
+    }
+
+    if (x > 37 && x < 50){
+        midSec.style.opacity = 1;
+    }else{
+        midSec.style.opacity = 0;
+    }
+
+    if (x > 90) {
+        bottomSec.style.opacity = 1;
+    } else {
+        bottomSec.style.opacity = 0;
+    }
+
     //Move Moon
     moon.position.x = (7 / 5) * Math.pow(x, 2) - 230 * x + 19000;
 
@@ -237,7 +265,6 @@ function scrolling(e) {
 
 function generateGradient() {
     
-   
     // matEdge.lights = true;
     // const matEdge = new THREE.MeshStandardMaterial({
     //     color: 0x906094, //purple
@@ -402,8 +429,8 @@ function createPlanets() {
     function createRing(innerW, width, color, z) {
 
         var random = Math.floor(Math.random() * Math.floor(4))/10;
-         console.log(random);
-         
+        console.log(random);
+        
         var uniformsRing = {
             iTime: { value: random },
             iResolution: { value: new THREE.Vector2() }

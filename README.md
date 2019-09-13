@@ -1,6 +1,5 @@
 # goHere Website v2.2
 [Deployment](https://gohere-test.herokuapp.com/)
-###
 ~~ [Asteroid Testing Grounds](https://gohere-test.herokuapp.com/testgrounds.html) ~~
 
 ## Checklist
@@ -10,9 +9,10 @@
 [] Fix Mobile
 
 ## Changelog
+#### v0.5.3
+* HomePage - Text Movements
 #### v0.5.0
 * Dynamic Home Page
-* 
 #### v0.2.3
 * Asteroid Fix
 * Mobile Compatibility for Asteroid
