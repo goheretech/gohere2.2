@@ -50,7 +50,7 @@ const fragmentShader = `
         // and the Saturation to the radius
         color = hsb2rgb(vec3((angle/TWO_PI)+0.5+iTime/10.,radius,1.0));
 
-        gl_FragColor = vec4(color,sin(iTime));
+        gl_FragColor = vec4(color,sin(iTime)+0.2);
     }
     `;
 const canvasDemo = document.querySelector('#canvDemo')
