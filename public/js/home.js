@@ -227,13 +227,13 @@ function scrolling(e) {
         topSec.style.opacity = 1;
     }
 
-    if (x > 37 && x < 50){
+    if (x > 33 && x < 52){
         midSec.style.opacity = 1;
     }else{
         midSec.style.opacity = 0;
     }
 
-    if (x > 90) {
+    if (x > 95) {
         bottomSec.style.opacity = 1;
     } else {
         bottomSec.style.opacity = 0;
@@ -478,7 +478,7 @@ function createPlanets() {
 function loadTextures() {
     return new Promise((resolve, reject) => {
         var textureLoader = new THREE.TextureLoader();
-        textureLoader.load('img/Planets/Gaseous2.png', function(map) {
+        textureLoader.load('img/Planets/Gaseous2-2.png', function(map) {
             moonTex = map;
         });
         var textureLoader = new THREE.TextureLoader();
@@ -496,7 +496,7 @@ function loadTextures() {
             reflMap = map;
         });
         var textureLoader = new THREE.TextureLoader();
-        textureLoader.load('img/Planets/Terrestrial3.png', function(map) {
+        textureLoader.load('img/Planets/Terrestrial4-2.png', function(map) {
             earthTex = map;
             if (earthTex && moonTex && atmo1Tex && planetTex && reflMap) {
                 resolve();

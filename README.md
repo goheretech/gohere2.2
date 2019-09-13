@@ -2,13 +2,11 @@
 [Deployment](https://gohere-test.herokuapp.com/)
 ~~ [Asteroid Testing Grounds](https://gohere-test.herokuapp.com/testgrounds.html) ~~
 
-## Checklist
-[] Textures for Planets
-[] Fade in Text
-[] Make certain text fixed
-[] Fix Mobile
+
 
 ## Changelog
+### v0.6.0
+* Updated Placeholder Textures
 #### v0.5.3
 * HomePage - Text Movements
 #### v0.5.0
