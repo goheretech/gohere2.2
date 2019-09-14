@@ -50,7 +50,7 @@ const fragmentShader = `
         // and the Saturation to the radius
         color = hsb2rgb(vec3((angle/TWO_PI)+0.5+iTime/10.,radius,1.0));
 
-        gl_FragColor = vec4(color,sin(iTime)+0.2);
+        gl_FragColor = vec4(color,abs(sin(iTime))+0.1);
     }
     `;
 const canvasDemo = document.querySelector('#canvDemo')
@@ -486,7 +486,7 @@ function loadTextures() {
             planetTex = map;
         });
         var textureLoader = new THREE.TextureLoader();
-        textureLoader.load('img/Planets/Clouds1.png', function(map) {
+        textureLoader.load('img/Planets/Clouds4.png', function(map) {
             atmo1Tex = map;
         });
         var textureLoader = new THREE.TextureLoader();
@@ -496,7 +496,7 @@ function loadTextures() {
             reflMap = map;
         });
         var textureLoader = new THREE.TextureLoader();
-        textureLoader.load('img/Planets/Terrestrial4-2.png', function(map) {
+        textureLoader.load('img/Planets/Volcanic.png', function(map) {
             earthTex = map;
             if (earthTex && moonTex && atmo1Tex && planetTex && reflMap) {
                 resolve();

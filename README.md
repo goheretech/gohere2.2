@@ -5,6 +5,8 @@
 
 
 ## Changelog
+### v0.7.0
+* Created Who page
 ### v0.6.0
 * Updated Placeholder Textures
 #### v0.5.3

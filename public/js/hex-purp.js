@@ -38,7 +38,7 @@ init();
 function init() {
   items = rows * cols;
   //Setup Renderer
-  canvas = document.getElementById('canvasHexPurple');
+  canvas = document.getElementById('canvasHex');
   renderer = new THREE.WebGLRenderer({
     canvas: canvas,
     antialias: true
