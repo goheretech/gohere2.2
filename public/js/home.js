@@ -155,6 +155,7 @@ async function init() {
     requestAnimationFrame(render);
     removeLoad();
     window.addEventListener('scroll', scrolling);
+    scrolling();
 }
 
 
@@ -221,7 +222,7 @@ function scrolling(e) {
 
     
     //Fade Sections
-    if (x > 3){
+    if (x > 1){
         topSec.style.opacity = 0;
     }else{
         topSec.style.opacity = 1;

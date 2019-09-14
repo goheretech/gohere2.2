@@ -10,17 +10,19 @@
 
 </head>
 
-<body>
+<body id="space">
     <div w3-include-html="./build/header.html"></div>
     <div w3-include-html="./build/loader.html" id="loader"></div>
     <section class="Hero work">
         <div class="cont">
 
             <div class="HomeHero-Col">
-
+                <h1 class="creative fixed"><span class="colorChange bril">Brilliance</span><br>
+                    <span="lh">Engineeers</span>
+                </h1>
             </div>
         </div>
-        <canvas id="canvasSpace"></canvas>
+        <!-- <canvas id="canvasSpace"></canvas> -->
         <div class="divider-bottom colorChange"></div>
         <div class="divider-bottom black"></div>
     </section>
@@ -39,7 +41,7 @@
     <section class="gg">
         <div class="divider-top colorChange"></div>
         <div class="divider-top black"></div>
-        <canvas class="sec black" id="canvasHex"></canvas>
+        <!-- <canvas class="sec black" id="canvasHex"></canvas> -->
         <div data-aos="fade-up" data-aos-offset="-300" class="cc">
             <div class="mini">
                 <div class="icon colorChange"></div>
@@ -56,7 +58,7 @@
 </body>
 <script src="https://www.w3schools.com/lib/w3.js"></script>;
 <script src="js/includeHTML.js"></script>;
-<script type="module" src="js/hex-purp.js"></script>
+<script src="js/scrollFade.js"></script>
 <script>
     window.onload = function () {
         fadeOutEffect();

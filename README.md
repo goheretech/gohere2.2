@@ -5,6 +5,9 @@
 
 
 ## Changelog
+### v0.7.2
+* Added space background to side pages
+* Animated hiden hero text
 ### v0.7.0
 * Created Who page
 ### v0.6.0

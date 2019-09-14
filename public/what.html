@@ -10,21 +10,22 @@
 
 </head>
 
-<body>
+<body id="space">
     <div w3-include-html="./build/header.html"></div>
     <div w3-include-html="./build/loader.html" id="loader"></div>
     <section class="Hero what">
         <div class="cont">
 
             <div class="HomeHero-Col">
-                <h1 class="creative"><span class="colorChange bril">Brilliance</span><br><span="lh">Engineeers</span>
+                <h1 class="creative fixed"><span class="colorChange bril">Brilliance</span><br><span="lh">Engineeers</span>
                 </h1>
             </div>
         </div>
         <canvas id="canvasSpace"></canvas>
-        <div class="divider-bottom purple"></div>
+        <div class="divider-bottom colorChange"></div>
+        <div class="divider-bottom black"></div>
     </section>
-    <section class="sec purple2blue gg">
+    <section class="sec black gg">
         <div data-aos="fade-up" data-aos-offset="-400" class="cc">
             <div class="mini">
                 <div class="icon ico-black"></div>
@@ -37,8 +38,9 @@
         </div>
     </section>
     <section class="gg">
-        <div class="divider-top blue"></div>
-        <canvas class="sec black" id="canvasHex"></canvas>
+        <div class="divider-top colorChange"></div>
+        <div class="divider-top black"></div>
+        
         <div data-aos="fade-up" data-aos-offset="-300" class="cc">
             <div class="mini">
                 <div class="icon"></div>
@@ -49,12 +51,13 @@
                 enables transformational opportunities for your business.</p>
 
         </div>
-        <div class="divider-bottom blue"></div>
+        <div class="divider-bottom colorChange"></div>
+        <div class="divider-bottom black"></div>
     </section>
 </body>
 <script src="https://www.w3schools.com/lib/w3.js"></script>;
 <script src="js/includeHTML.js"></script>;
-<script type="module" src="js/hex-purp.js"></script>
+<script src="js/scrollFade.js"></script>
 <script>
     window.onload = function () {
         fadeOutEffect();

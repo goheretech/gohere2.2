@@ -10,14 +10,14 @@
 
 </head>
 
-<body>
+<body id="space">
     <div w3-include-html="./build/header.html"></div>
     <div w3-include-html="./build/loader.html" id="loader"></div>
     <section class="Hero who">
         <div class="cont">
 
             <div class="HomeHero-Col">
-                <h1 class="creative"><span class="colorChange bril">Brilliance</span><br>
+                <h1 class="creative fixed"><span class="colorChange bril">Brilliance</span><br>
                     <span="lh">Engineeers</span>
                 </h1>
             </div>
@@ -44,7 +44,7 @@
                 <h5 class="name">
                     christopher reid - lead growth envisioneer
                 </h5>
-                <h2 class="nick">
+                <h2 class="nick colorChange">
                     Ginger King
                 </h2>
                 <h3 class="main">
@@ -167,6 +167,7 @@
 <script src="https://www.w3schools.com/lib/w3.js"></script>;
 <script src="js/includeHTML.js"></script>;
 <script type="module" src="js/hex-purp.js"></script>;
+<script src="js/scrollFade.js"></script>
 <script>
     window.onload = function () {
         fadeOutEffect();
