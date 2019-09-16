@@ -15,7 +15,7 @@ function getPerct() {
     if (heroText) {heroText.style.transform = `scale(${scrollInv2}, ${scrollInv2})`;}
     // console.log(scrollInv, planet.style.transform);
     
-    if (scrolled > 20) {
+    if (scrolled > 25) {
         heroText.style.opacity = 0;
         if (planet) {planet.style.opacity = 0;}
     } else {

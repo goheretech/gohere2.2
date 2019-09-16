@@ -5,6 +5,10 @@
 
 
 ## Changelog
+### v0.7.5
+* Added more planets
+* Added screenshots of clients
+* Bug fixes
 ### v0.7.4
 * Bug Fix
 ### v0.7.3

@@ -13,7 +13,8 @@
             "Marketing"
         ],
         "year": "2019",
-        "url": "https://thehofp.org"
+        "url": "https://thehofp.org",
+        "img": "/img/clients/hofp.png"
     }, {
         "id": "2",
         "name": "PLM Paving",
@@ -27,7 +28,8 @@
             "Marketing"
         ],
         "year": "2019",
-        "url": "https://plmpaving.com"
+        "url": "https://plmpaving.com",
+        "img": "/img/clients/plm.png"
     }, {
         "id": "3",
         "name": "Major Goolsby's",
@@ -35,7 +37,8 @@
         "shortD": "The #1 Sports Bar in Milwaukee",
         "services": ["UX", "Visual Design", "Branding", "Creative Direction"],
         "year": "2018",
-        "url": "https://majorgoolsbys.com"
+        "url": "https://majorgoolsbys.com",
+        "img": "/img/clients/majors.png"
     }, {
         "id": "4",
         "name": "Alexanders of Door County",
@@ -43,7 +46,8 @@
         "shortD": "The best casual fine dining experience in Door County",
         "services": ["UX", "Visual Design", "Branding", "Creative Direction"],
         "year": "2019",
-        "url": "https://alexandersofdoorcounty.com"
+        "url": "https://alexandersofdoorcounty.com",
+        "img": "/img/clients/alex.png"
     }, {
         "id": "5",
         "name": "Bosman Chiropractic",
@@ -51,7 +55,8 @@
         "shortD": "Bosman Chiropractic has been proudly serving the metro Detroit area for over 20 years!",
         "services": ["UX", "Visual Design", "Branding", "Creative Direction"],
         "year": "2018",
-        "url": "https://www.bosmanchiropractic.com/"
+        "url": "https://www.bosmanchiropractic.com/",
+        "img": "/img/clients/bosman.png"
     },{
         "id": "6",
         "name": "Divine Chiropractic",
@@ -59,7 +64,8 @@
         "shortD": "The premier chiropractic and nutrition center in Tulsa, OK.",
         "services": ["UX", "Visual Design", "Branding", "Creative Direction"],
         "year": "2018",
-        "url": "https://divinechiro.com"
+        "url": "https://divinechiro.com",
+        "img": "/img/clients/divine.png"
     }, {
         "id": "7",
         "name": "Michigan Intergrative Medicine",
@@ -67,6 +73,7 @@
         "shortD": "A fertility, holistic medicine, and acupuncture center.",
         "services": ["UX", "Visual Design", "Branding", "Creative Direction"],
         "year": "2018",
-        "url": "https://michiganintegrativemedicine.com/"
+        "url": "https://michiganintegrativemedicine.com/",
+        "img": "/img/clients/mim.png"
     }
 ]

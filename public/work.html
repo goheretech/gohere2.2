@@ -19,7 +19,7 @@
         <div class="cont">
 
             <div class="HomeHero-Col" style="width:100%">
-                <img src="/img/Planets/planet1.png" alt="" class="planet" >
+                <img src="/img/Planets/planet5.png" alt="" class="planet" >
                 <h1 class="creative fixed"><span class="colorChange">Creative</span><br>
                     <span="lh">Partners</span>
                 </h1>
@@ -84,11 +84,14 @@
             var partName = document.createElement("h3");
             var partYear = document.createElement("h5");
             var partDesc = document.createElement("p");
-
+            
             //Add Data
             var partNameData = document.createTextNode(partner.name);
             var partYearData = document.createTextNode(partner.year);
             var partDescData = document.createTextNode(partner.shortD);
+            partImg.style.background =  `url(${partner.img})`;
+            partImg.style.backgroundSize = 'cover';
+
 
             //Add Data to Elements
             div.appendChild(partImg);
