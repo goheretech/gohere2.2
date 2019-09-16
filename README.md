@@ -1,10 +1,15 @@
 # goHere Website v2.2
 [Deployment](https://gohere-test.herokuapp.com/)
-~~ [Asteroid Testing Grounds](https://gohere-test.herokuapp.com/testgrounds.html) ~~
+~~[Asteroid Testing Grounds](https://gohere-test.herokuapp.com/testgrounds.html)~~
 
 
 
 ## Changelog
+### v0.7.3
+* Created projects JSON
+* Integrated JSON into work page
+* Added planets to work and who pages
+* Added new font - Abel
 ### v0.7.2
 * Added space background to side pages
 * Animated hiden hero text

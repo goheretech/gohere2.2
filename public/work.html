@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Work | goHere 2.0</title>
+    <link href="https://fonts.googleapis.com/css?family=Abel|Montserrat+Alternates&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.min.css">
 
 </head>
@@ -16,9 +18,10 @@
     <section class="Hero work">
         <div class="cont">
 
-            <div class="HomeHero-Col">
-                <h1 class="creative fixed"><span class="colorChange bril">Brilliance</span><br>
-                    <span="lh">Engineeers</span>
+            <div class="HomeHero-Col" style="width:100%">
+                <img src="/img/Planets/planet1.png" alt="" class="planet" >
+                <h1 class="creative fixed"><span class="colorChange">Creative</span><br>
+                    <span="lh">Partners</span>
                 </h1>
             </div>
         </div>
@@ -30,39 +33,79 @@
         <div data-aos="fade-up" data-aos-offset="-400" class="cc">
             <div class="mini">
                 <div class="icon colorChange"></div>
-                <h6>Masterminds</h6>
+                <h6>Aiding Awesomeness</h6>
             </div>
-            <h2>Sharpening the <br>cutting edge</h2>
-            <p>At goHere we develop and apply technology in creative ways, adding value to your organization. Technology
-                enables transformational opportunities for your business.</p>
-            <a href="#">Learn More</a>
+            <h2>Our Amazing Partners</h2>
+            <p>We develop a creative partnership with each of our clients to deliver the best results. We select brands that we can add value to — <b>brands we can be passionate about helping.</b></p>
         </div>
     </section>
-    <section class="gg">
+    <div class="altSection">
         <div class="divider-top colorChange"></div>
         <div class="divider-top black"></div>
         <!-- <canvas class="sec black" id="canvasHex"></canvas> -->
-        <div data-aos="fade-up" data-aos-offset="-300" class="cc">
-            <div class="mini">
-                <div class="icon colorChange"></div>
-                <h6>street-smart strategists</h6>
-            </div>
-            <h2>Creative Solutions <br>are our business.</h2>
-            <p>At goHere we develop and apply technology in creative ways, adding value to your organization. Technology
-                enables transformational opportunities for your business.</p>
+        <div data-aos="fade-up" data-aos-offset="-300"  id="partnersHolder">
+            
+
 
         </div>
         <div class="divider-bottom colorChange"></div>
         <div class="divider-bottom black"></div>
-    </section>
+    </div>
 </body>
 <script src="https://www.w3schools.com/lib/w3.js"></script>;
 <script src="js/includeHTML.js"></script>;
 <script src="js/scrollFade.js"></script>
 <script>
+    var actual_JSON;
+    
     window.onload = function () {
+        
+        
         fadeOutEffect();
+        loadJSON(function(response) {
+        // Parse JSON string into object
+            actual_JSON = JSON.parse(response);
+            console.log(actual_JSON);
+            createElements();
+            
+        });
     };
+
+    function createElements(){
+        var holder = document.getElementById("partnersHolder");
+        actual_JSON.forEach((partner, id)=>{
+            // Create Div
+            var div = document.createElement("div");
+            div.setAttribute("class", "partner")
+
+            // Create Elements
+            var partImg = document.createElement("div");
+            partImg.setAttribute("class", "pImg")
+            var partName = document.createElement("h3");
+            var partYear = document.createElement("h5");
+            var partDesc = document.createElement("p");
+
+            //Add Data
+            var partNameData = document.createTextNode(partner.name);
+            var partYearData = document.createTextNode(partner.year);
+            var partDescData = document.createTextNode(partner.shortD);
+
+            //Add Data to Elements
+            div.appendChild(partImg);
+
+            div.appendChild(partName);
+            partName.appendChild(partNameData);
+
+            div.appendChild(partYear);
+            partYear.appendChild(partYearData);
+
+            div.appendChild(partDesc);
+            partDesc.appendChild(partDescData);
+
+            //Create Elements
+            holder.appendChild(div);            
+        })
+    }
 
     function fadeOutEffect() {
         var fadeTarget = document.getElementById("loader");
@@ -77,6 +120,20 @@
                 fadeTarget.style.display = 'none';
             }
         }, 100);
+    }
+
+    function loadJSON(callback) {
+
+        var xobj = new XMLHttpRequest();
+        xobj.overrideMimeType("application/json");
+        xobj.open('GET', 'partners.json', true); // Replace 'my_data' with the path to your file
+        xobj.onreadystatechange = function () {
+            if (xobj.readyState == 4 && xobj.status == "200") {
+                // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+                callback(xobj.responseText);
+            }
+        };
+        xobj.send(null);
     }
 </script>
 
