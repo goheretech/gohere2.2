@@ -10,7 +10,9 @@ function getPerct() {
     var scrolled =
         ((h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight)) * 100; //0 to 100
     var scrollInv = (scrolled)/100+1;
+    var scrollInv2 = (100-scrolled)/100;
     if (planet) {planet.style.transform = `scale(${scrollInv}, ${scrollInv}) translateX(${scrolled*4}px)`;}
+    if (heroText) {heroText.style.transform = `scale(${scrollInv2}, ${scrollInv2})`;}
     // console.log(scrollInv, planet.style.transform);
     
     if (scrolled > 20) {
