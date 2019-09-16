@@ -5,6 +5,10 @@
 
 
 ## Changelog
+
+### v0.7.6
+*  Bug fixes
+* Chanegs Engineers to Envisioneers
 ### v0.7.5
 * Added more planets
 * Added screenshots of clients
