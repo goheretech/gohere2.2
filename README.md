@@ -8,6 +8,7 @@
 ### v0.7.5
 * Added more planets
 * Added screenshots of clients
+* Updated Bios
 * Bug fixes
 ### v0.7.4
 * Bug Fix
