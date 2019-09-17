@@ -1,14 +1,16 @@
 # goHere Website v2.2
 [Deployment](https://gohere-test.herokuapp.com/)
+
 ~~[Asteroid Testing Grounds](https://gohere-test.herokuapp.com/testgrounds.html)~~
 
 
 
 ## Changelog
-
+### v0.7.8
+* Added logo prototype
 ### v0.7.6
-*  Bug fixes
-* Chanegs Engineers to Envisioneers
+* Bug fixes
+* Changes Engineers to Envisioneers
 ### v0.7.5
 * Added more planets
 * Added screenshots of clients
