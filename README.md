@@ -6,6 +6,8 @@
 
 
 ## Changelog
+### v0.7.9
+* Changed gradient on cubes
 ### v0.7.8
 * Added logo prototype
 ### v0.7.6
