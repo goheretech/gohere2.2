@@ -8,6 +8,8 @@
 ## Changelog
 ### v0.7.9
 * Changed gradient on cubes
+* Contact Page started
+* Added colorRotate to planets
 ### v0.7.8
 * Added logo prototype
 ### v0.7.6
