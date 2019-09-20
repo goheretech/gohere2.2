@@ -85,6 +85,8 @@ init();
 
 async function init() {
     
+    promiseTest();
+
     uniforms = {
         iTime: { value: 0 },
         iResolution: { value: new THREE.Vector2() }
@@ -483,7 +485,7 @@ function loadTextures() {
             moonTex = map;
         });
         var textureLoader = new THREE.TextureLoader();
-        textureLoader.load('img/Planets/Gaseous4.png', function(map) {
+        textureLoader.load('img/Planets/gasGiant.png', function(map) {
             planetTex = map;
         });
         var textureLoader = new THREE.TextureLoader();
@@ -506,6 +508,65 @@ function loadTextures() {
             }
         });
     });
+}
+
+function promiseTest(){
+    var x = 1;
+    var p1 = new Promise((resolve, reject) => {
+        var textureLoader = new THREE.TextureLoader();
+        textureLoader.load('img/Planets/Gaseous2-2.png', function(map) {
+            moonTex = map;
+            if (moonTex) {
+                console.log(`Moon texture loaded. stage:${x}`);
+                resolve(x);
+            } else {
+                reject('No moon texture');
+            }
+        });
+        x++;        
+    })
+        .then(x => {
+            x++;
+            var textureLoader = new THREE.TextureLoader();
+            textureLoader.load('img/Planets/gasGiant.png', function(map) {
+                planetTex = map;
+                if (planetTex) {
+                    console.log(`Planet texture loaded. stage:${x}`);
+                    return x;
+                } else {
+                    reject('No go #2');
+                }
+            });
+            
+        })
+        .then(x => {
+            x++;
+            var textureLoader = new THREE.TextureLoader();
+            textureLoader.load('img/Planets/Clouds4.png', function(map) {
+                atmo1Tex = map;
+                if (atmo1Tex) {
+                    console.log(`Planet atmo loaded. stage:${x}`);
+                    return x;
+                } else {
+                    reject('No go #3');
+                }
+            });
+            
+        })
+        .then(x => {
+            x++;
+            var textureLoader = new THREE.TextureLoader();
+            textureLoader.load('img/Planets/Volcanic.png', function(map) {
+                earthTex = map;
+                 if (earthTex) {
+                     console.log(`earth loaded. stage:${x}`);
+                     return x;
+                 } else {
+                     reject('No go #4');
+                 }
+            });
+           
+        });
 }
 
 function createMaterials() {

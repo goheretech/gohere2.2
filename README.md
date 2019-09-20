@@ -8,6 +8,9 @@
 ## Changelog
 ### v0.8.0
 * Added new load screen
+* Remade work page to better feature clients
+* Started making new textures
+* Working on properly setting up promises for loading textures
 ### v0.7.9
 * Changed gradient on cubes
 * Contact Page started

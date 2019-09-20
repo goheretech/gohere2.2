@@ -79,28 +79,32 @@
             div.setAttribute("class", "partner")
 
             // Create Elements
-            var partImg = document.createElement("div");
-            partImg.setAttribute("class", "pImg")
+            
             var partName = document.createElement("h3");
-            var partYear = document.createElement("h5");
+            var partNameGlow = document.createElement("h3");
+            partNameGlow.classList.add("glow");
+            partName.classList.add("title");
+            // var partYear = document.createElement("h5");
             var partDesc = document.createElement("p");
             
             //Add Data
             var partNameData = document.createTextNode(partner.name);
-            var partYearData = document.createTextNode(partner.year);
+            var partNameDataGlow = document.createTextNode(partner.name);
+            // var partYearData = document.createTextNode(partner.year);
             var partDescData = document.createTextNode(partner.shortD);
-            partImg.style.background =  `url(${partner.img})`;
-            partImg.style.backgroundSize = 'cover';
+            
 
 
             //Add Data to Elements
-            div.appendChild(partImg);
+            
 
             div.appendChild(partName);
             partName.appendChild(partNameData);
+            div.appendChild(partNameGlow);
+            partNameGlow.appendChild(partNameDataGlow);
 
-            div.appendChild(partYear);
-            partYear.appendChild(partYearData);
+            // div.appendChild(partYear);
+            // partYear.appendChild(partYearData);
 
             // div.appendChild(partDesc);
             partDesc.appendChild(partDescData);
