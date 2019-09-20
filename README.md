@@ -6,6 +6,8 @@
 
 
 ## Changelog
+### v0.8.0
+* Added new load screen
 ### v0.7.9
 * Changed gradient on cubes
 * Contact Page started
